@@ -1,0 +1,130 @@
+﻿@model IEnumerable<RegistroPersonas.Dominio.Persona>
+
+@{
+    ViewBag.Title = "ListarPersonas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    WebGrid grilla = new WebGrid(Model);
+    
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#resultado").hide();
+
+        $("#borrar").on("click", function () {
+
+
+
+            var dato = $("#identificacion").val();
+
+            /*elimina una persona */
+
+            $.post('../Persona/EliminarPersona', {identificacion:dato}, function (data) {
+                
+                if (data.estado == "ok") {
+
+                    $("#resultado").html(data.mensaje);
+                    $("#resultado").addClass("alert");
+                    $("#resultado").addClass("alert-success");
+                    $("#resultado").show();
+                }
+
+            });
+        });
+
+        $("#editar").on("click", function () {
+
+            var fecha = $("#fecha").text();
+            var sexo = $("#sexo").text();
+
+            var persona = {
+
+                Identificacion : $("#identificacion").val(),
+                Nombres: $("#nombres").val(),
+                Apellidos : $("#apellidos").val(),
+                Sexo: sexo,
+                FechaNacimiento: fecha,
+                Profesion: $("#profesiones").val()
+            };
+
+
+            $.post('../Persona/ActualizarPersona', persona, function (data) {
+
+
+                if (data.estado == "ok") {
+
+                    alert("registro actualizado");
+                }
+
+
+
+            });
+
+        });
+
+
+    });
+</script>
+
+
+ 
+
+<ol class="breadcrumb" style="margin-top:20px;">
+    <li><a href="~/">Registro Personas</a></li>
+    <li class="active"><a href="/Persona/ListarPersonas">Ver Personas</a></li>
+</ol>
+
+
+<div  id="resultado">
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>LIsta de Personas</strong>
+    </div>
+
+    <div class="panel-body ">
+        @grilla.GetHtml(
+
+                 tableStyle: "table table-hover",
+                 mode: WebGridPagerModes.All,
+        columns: grilla.Columns(
+
+        grilla.Column("Identificacion", header: "Identificacion", format: @<text><input type="text" id="identificacion" value="@item.Identificacion" disabled="disabled" class="edit-mode" /></text>),
+        grilla.Column("Nombres", header: "Nombres", format:
+        @<text><input type="text" id="nombres" value="@item.Nombres" class="edit-mode" /></text>),
+
+        grilla.Column("Apellidos", header: "Apellidos",format:@<text><input type="text" id="apellidos" value="@item.Apellidos" class="edit-mode" /></text>),
+        grilla.Column("Sexo", header: "Sexo", format:@<text><labe id="sexo">@item.Sexo</labe></text>
+                      ),
+                      grilla.Column("FechaNacimiento", header: "Fecha Nacimiento",format:@<text><labe id="fecha">@item.FechaNacimiento</labe></text>),
+                      grilla.Column("Profesion", header: "Profesion",format:@<text>
+
+            <select id="profesiones">
+                <option value="@item.Profesion">@item.Profesion</option>
+                <option value="Abogado">Abogado</option>
+                <option value="Mecanico">Mecanico</option>
+                <option value="Futbolista">Futbolista</option>
+                <option value="Periodista">Periodista</option>
+                <option value="Cantante">Cantante</option>
+                <option value="Mercaderista">Mercaderista</option>
+                <option value="Medico">Medico</option>
+
+            </select>
+
+
+                    </text>),
+
+        grilla.Column(format:@<text><input type="button" name="editar" value="Editar" id="editar" class="btn btn-success btn-sm" />
+            <input type="button" name="eliminar" value="Eliminar" id="borrar" class="btn btn-danger btn-sm" />
+        </text>)
+
+                              ))
+</div>
+</div>
+   
+            

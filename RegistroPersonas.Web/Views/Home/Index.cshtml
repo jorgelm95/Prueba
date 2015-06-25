@@ -1,0 +1,255 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#respuesta").hide();
+        $("#formularioFoto").hide();
+        
+        $("#detalle").on("click", function(){
+        
+            $("#formularioFoto").show();
+        
+        });
+
+
+        $("#actualizar").hide();
+
+
+        $('#validar').on("click", function(){
+        
+              var validado = $("#formularioRegistro").validate();
+             
+            $("#formularioRegistro").validate({
+
+                rules: {
+                    identificacion: { required: true, digits :true },
+                    nombres: { required: true, maxlength: 20 },
+                    apeliidos: { required: true, maxlength: 20 },
+                    sexo: { required: true },
+                    fecha: { required: true },
+                    profesiones: { required: true }
+                },
+                messages: {
+                    identificacion:{ required:"campo obligatorio solo debe contener numeros", digits:"el campo solo admite numeros"},
+                    nombres: { required: "campo obligatorio maximo 20 letras" },
+                    apellidos: { required: "campo obligatorio maximo 20 letras" },
+                    sexo: {required:"campo obligatorio debe seleccionar un sexo"},
+                    fecha: { required: "campo obligatorio selecciones una fecha" },
+                    profesiones: {required:"campo obligatorio seleccione su profesion"}
+                }
+            });
+
+        });
+
+        $("#enviar").on("click", function () {
+
+       
+
+            
+
+
+            
+
+            var persona = {
+
+                Identificacion: $('#identificacion').val(),
+                Nombres: $('#nombres').val(),
+                Apellidos: $('#apellidos').val(),
+                Sexo: $("input[name='Sexo']:checked").val(),
+                FechaNacimiento: $('#fecha').val(),
+                profesion: $('#profesiones').val()
+
+            };
+            $.post('../Persona/GuardarPersona', persona, function (data) {
+
+                if (data.estado == "ok") {
+
+                    $("#respuesta").html(data.mensaje);
+                    $("#respuesta").show();
+                    $("#enviar").attr("visibility", "visibility");
+                    $("#actualizar").show();
+                    $("#enviar").attr("disabled", "disabled");
+
+                }
+
+
+            });
+
+        });
+
+
+        $("#subir").on("click", function () {
+
+            var imagen = $("#imagen").get(0).files;
+            var data = new FormData();
+
+            for (i = 0; i < imagen.length; i++) {
+                data.append("file" + i, imagen[i]);
+            }
+
+            var posicion = $("#posicion").val();
+            var descripcion = $("#descripcion").val();
+            var identificacion = $("#identificacion").val();
+
+            $.post('../Persona/GuardarFoto', {
+                identificacion: identificacion,
+                imagen: data,
+                posicion: posicion,
+                descripcion: descripcion
+            }, function (data) {
+
+                if (data.estado == "ok") {
+
+                    $("#resultadoenvio").html(data.estado);
+                    $("#resultadoenvio").addClass("alert");
+                    $("#resultadoenvio").addClass("alert-success");
+                }
+
+            });
+
+
+        });
+
+     });
+       
+        
+</script>
+
+<ol class="breadcrumb" style="margin-top:20px;">
+    <li><a href="~/">Registro Personas</a></li>
+    <li class="active"><a href="/Persona/ListarPersonas">Ver Personas</a></li>
+</ol>
+
+<div class="container"style="margin-top:60px;">
+
+    <div class="row clearfix">
+
+        <div class="col-lg-6">
+
+            <div id="respuesta">
+
+            </div>
+
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Registro Persona</strong>
+                </div>
+
+                <div class="panel-body">
+
+                    <form action="/Persona/GuardarPersona" method="post" id="formularioRegistro" novalidate>
+                        <div class="form-group">
+                            <label>Identificacion</label>
+                            <input type="text" name="Identificacion" value=""  id ="identificacion" class="form-control required" />
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Nombres</label>
+                            <input type="text" name="Nombres" value=""  id="nombres" class="form-control required" />
+                        </div>
+                        <div class="form-group">
+
+                            <label>Apellidos</label>
+                            <input type="text" name="Apellidos" value=""  id="apellidos" class="form-control required" />
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Sexo</label>
+                            <input type="radio" name="Sexo" value="Masculino" checked  id="m"/>Masculino
+                            <input type="radio" name="Sexo" value="Femenino" id="f" />Femenino
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Fecha Nacimiento</label>
+                            <input type="date" name="FechaNacimiento" value=""  id="fecha" class="form-control" />
+                        </div>
+  
+  
+                        <div class="form-group">
+                            <label>Profesion</label>
+                            <select name="Profesion" id="profesiones">
+                                <option value="Ingeniero">Ingeniero</option>
+                                <option value="Abogado">Abogado</option>
+                                <option value="Mecanico">Mecanico</option>
+                                <option value="Futbolista">Futbolista</option>
+                                <option value="Periodista">Periodista</option>
+                                <option value="Cantante">Cantante</option>
+                                <option value="Mercaderista">Mercaderista</option>
+                                <option value="Medico">Medico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" name="enviar" id="enviar" value="Enviar" class="btn btn-primary" />
+                            <input type="button" name="de" value="Actualizar" id="actualizar" class="btn btn-primary" />
+                            <input type="button" name="de" value="Detalle Registro" id="detalle" class="btn btn-primary" />
+                            <input type="button" name="valido" value="validar form" id="validar" class="btn btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+        </div>
+        
+
+
+        <div class="col-lg-6" id="formularioFoto">
+            
+            <div id="resultadoenvio"></div>
+            
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Registro Detalle</strong>
+                </div>
+                <div class="panel-body">
+
+                    <form action="/Foto/GuardarFoto" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label>Agregar Foto</label>
+                            <input type="file" name="Nombres" value="" id="imagen" class="form-control" />
+
+                            <div class="form-group">
+                                <label>Posicion foto</label>
+                                <select id="posicion">
+                                    <option value="frontal">Frontal</option>
+                                    <option value="lateral derecho">Lateral derecha</option>
+                                    <option value="lateral izquierda">Lateral izquierda</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Breve descripcion de su foto</label>
+                                <input type="text" name="desc" value="" id="descripcion" class="form-control"  multiple/>
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="button" name="subir" value="Subir imagen"  id="subir"/>
+                            </div>
+
+                        </div>
+                        </form>
+                    </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+

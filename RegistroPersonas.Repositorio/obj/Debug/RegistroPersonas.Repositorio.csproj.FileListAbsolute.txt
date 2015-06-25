@@ -1,0 +1,14 @@
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\RegistroPersonas.Repositorio.dll.config
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\RegistroPersonas.Repositorio.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\RegistroPersonas.Repositorio.pdb
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\EntityFramework.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\RegistroPersonas.Dominio.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\RegistroPersonas.Dominio.pdb
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\EntityFramework.xml
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\obj\Debug\RegistroPersonas.Repositorio.csprojResolveAssemblyReference.cache
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\obj\Debug\RegistroPersonas.Repositorio.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\obj\Debug\RegistroPersonas.Repositorio.pdb
+C:\Users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\obj\Debug\RegistroPersonas.Repositorio.Migrations.InitialCreate.resources
+C:\Users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Repositorio\obj\Debug\RegistroPersonas.Repositorio.csproj.GenerateResource.Cache

@@ -1,0 +1,10 @@
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\RegistroPersonas.Dominio.dll.config
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\RegistroPersonas.Dominio.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\RegistroPersonas.Dominio.pdb
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\EntityFramework.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\EntityFramework.xml
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\obj\Debug\RegistroPersonas.Dominio.csprojResolveAssemblyReference.cache
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\obj\Debug\RegistroPersonas.Dominio.dll
+c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Dominio\obj\Debug\RegistroPersonas.Dominio.pdb
