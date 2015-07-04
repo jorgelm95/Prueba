@@ -1,125 +1,154 @@
-﻿@{
+﻿@model RegistroPersonas.Dominio.Persona
+@{
     ViewBag.Title = "Home Page";
 }
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
-
-
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.js"></script>
 <script>
     $(document).ready(function () {
 
         $("#respuesta").hide();
-        $("#formularioFoto").hide();
-        
-        $("#detalle").on("click", function(){
-        
+       
+
+        $("#detalle").on("click", function () {
+
             $("#formularioFoto").show();
-        
+
         });
 
 
         $("#actualizar").hide();
-
-
-        $('#validar').on("click", function(){
         
-              var validado = $("#formularioRegistro").validate();
-             
-            $("#formularioRegistro").validate({
+        $(".mse").hide();
 
-                rules: {
-                    identificacion: { required: true, digits :true },
-                    nombres: { required: true, maxlength: 20 },
-                    apeliidos: { required: true, maxlength: 20 },
-                    sexo: { required: true },
-                    fecha: { required: true },
-                    profesiones: { required: true }
-                },
-                messages: {
-                    identificacion:{ required:"campo obligatorio solo debe contener numeros", digits:"el campo solo admite numeros"},
-                    nombres: { required: "campo obligatorio maximo 20 letras" },
-                    apellidos: { required: "campo obligatorio maximo 20 letras" },
-                    sexo: {required:"campo obligatorio debe seleccionar un sexo"},
-                    fecha: { required: "campo obligatorio selecciones una fecha" },
-                    profesiones: {required:"campo obligatorio seleccione su profesion"}
-                }
-            });
-
-        });
-
-        $("#enviar").on("click", function () {
-
-       
-
+        $("#frmpersona").submit(function(){
+        
             
 
+                var personaValidar = $("#frmpersona");
 
-            
 
-            var persona = {
+                if (personaValidar.validate()) {
 
-                Identificacion: $('#identificacion').val(),
-                Nombres: $('#nombres').val(),
-                Apellidos: $('#apellidos').val(),
-                Sexo: $("input[name='Sexo']:checked").val(),
-                FechaNacimiento: $('#fecha').val(),
-                profesion: $('#profesiones').val()
+                    var persona = {
 
-            };
-            $.post('../Persona/GuardarPersona', persona, function (data) {
+                        Identificacion: $('#Identificacion').val(),
+                        Nombres: $('#Nombres').val(),
+                        Apellidos: $('#Apellidos').val(),
+                        Sexo: $("input[name='Sexo']:checked").val(),
+                        FechaNacimiento: $('#fecha').val(),
+                        Profesion: $('#profesiones').val()
 
-                if (data.estado == "ok") {
+                    };
 
-                    $("#respuesta").html(data.mensaje);
-                    $("#respuesta").show();
-                    $("#enviar").attr("visibility", "visibility");
-                    $("#actualizar").show();
-                    $("#enviar").attr("disabled", "disabled");
+                    $.post('../Persona/GuardarPersona', persona, function (data) {
+
+                        if (data.estado == "ok") {
+                            
+                            $("#respuesta").addClass("alert");
+                            $("#respuesta").addClass("alert-success");
+                            $("#respuesta").html(data.mensaje);
+                            $("#respuesta").show();
+                        }
+
+
+                    });
+
+
+                } else {
+                    return false;
 
                 }
 
+            })
 
-            });
+
+        $("#error").hide();
+
+        $("#Identificacion").on("blur", function () {
+
+
+            var cc = $("#Identificacion").val();
+
+            $.post('../Persona/ValidarIdentificacion', { identificacion : cc }, function (data) {
+
+
+                if (data.estado != "ok") {
+
+                    $("#error").html(data.mensaje);
+                    $("#error").show();
+                } else {
+
+                    $("#error").html(data.mensaje);
+                    $("#error").show();
+                }
+
+
+            })
 
         });
+
+               
+
+        });
+  
+        //$("#formularioRegistro").validate({
+
+
+        //    rules: {
+        //        identificacion: { required: true, digits: true },
+        //        nombres: { required: true, maxlength: 20 },
+        //        apeliidos: { required: true, maxlength: 20 },
+        //        sexo: { required: true },
+        //        fecha: { required: true },
+        //        profesiones: { required: true }
+        //    },
+        //    messages: {
+        //        identificacion: { required: "campo obligatorio solo debe contener numeros", digits: "el campo solo admite numeros" },
+        //        nombres: { required: "campo obligatorio maximo 20 letras" },
+        //        apellidos: { required: "campo obligatorio maximo 20 letras" },
+        //        sexo: { required: "campo obligatorio debe seleccionar un sexo" },
+        //        fecha: { required: "campo obligatorio selecciones una fecha" },
+        //        profesiones: { required: "campo obligatorio seleccione su profesion" }
+        //    }
+        //});
+</script>
+
+<script>
+
+    $(document).ready(function () {
 
 
         $("#subir").on("click", function () {
 
-            var imagen = $("#imagen").get(0).files;
-            var data = new FormData();
+            var dato = new FormData();
 
-            for (i = 0; i < imagen.length; i++) {
-                data.append("file" + i, imagen[i]);
+            var archivo = $("#imagen").get(0).files;
+
+            if (archivo.length > 0) {
+                dato.append("imagen", archivo[0]);
             }
+            var id = $("#Identificacion").val();
+            var u = $("#posicion").val();
+            var d = $("#descripcion").val();
 
-            var posicion = $("#posicion").val();
-            var descripcion = $("#descripcion").val();
-            var identificacion = $("#identificacion").val();
+            $.post('../Persona/GuardarFoto', {identificacion:id,imagen:dato,posicion:u,descripcion:d},
+                function (data) {
 
-            $.post('../Persona/GuardarFoto', {
-                identificacion: identificacion,
-                imagen: data,
-                posicion: posicion,
-                descripcion: descripcion
-            }, function (data) {
+                    if (data.estado == "ok") {
 
-                if (data.estado == "ok") {
-
-                    $("#resultadoenvio").html(data.estado);
-                    $("#resultadoenvio").addClass("alert");
-                    $("#resultadoenvio").addClass("alert-success");
-                }
-
-            });
-
-
+                        $("#resultadoenvio").html(data.estado);
+                        $("#resultadoenvio").addClass("alert");
+                        $("#resultadoenvio").addClass("alert-success");
+                    }
+                });
         });
+    });
 
-     });
-       
-        
+
 </script>
 
 <ol class="breadcrumb" style="margin-top:20px;">
@@ -127,7 +156,7 @@
     <li class="active"><a href="/Persona/ListarPersonas">Ver Personas</a></li>
 </ol>
 
-<div class="container"style="margin-top:60px;">
+<div class="container" style="margin-top:60px;">
 
     <div class="row clearfix">
 
@@ -137,6 +166,9 @@
 
             </div>
 
+            
+
+
             <section class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Registro Persona</strong>
@@ -144,39 +176,52 @@
 
                 <div class="panel-body">
 
-                    <form action="/Persona/GuardarPersona" method="post" id="formularioRegistro" novalidate>
+
+                    @using (Html.BeginForm(actionName: "GuardarPersona", controllerName: "Persona", method: FormMethod.Post, htmlAttributes: new { id="frmpersona"}))
+                    {
+
                         <div class="form-group">
+
                             <label>Identificacion</label>
-                            <input type="text" name="Identificacion" value=""  id ="identificacion" class="form-control required" />
+                            @Html.TextBoxFor(p => p.Identificacion)
+                            @Html.ValidationMessageFor(p => p.Identificacion, null, new { @class = "label label-danger" })
+                            <span class="label label-danger" id="error"></span>
                         </div>
 
                         <div class="form-group">
 
                             <label>Nombres</label>
-                            <input type="text" name="Nombres" value=""  id="nombres" class="form-control required" />
+                            @Html.TextBoxFor(p => p.Nombres)
+                            @Html.ValidationMessageFor(p => p.Nombres, null, new { @class = "label label-danger" })
                         </div>
+
                         <div class="form-group">
 
                             <label>Apellidos</label>
-                            <input type="text" name="Apellidos" value=""  id="apellidos" class="form-control required" />
+                            @Html.TextBoxFor(p => p.Apellidos)
+                            @Html.ValidationMessageFor(p => p.Apellidos, null, new { @class = "label label-danger" })
                         </div>
 
                         <div class="form-group">
 
                             <label>Sexo</label>
-                            <input type="radio" name="Sexo" value="Masculino" checked  id="m"/>Masculino
+                            <input type="radio" name="Sexo" value="Masculino" checked id="m" />Masculino
                             <input type="radio" name="Sexo" value="Femenino" id="f" />Femenino
+                            
                         </div>
-
 
                         <div class="form-group">
 
                             <label>Fecha Nacimiento</label>
-                            <input type="date" name="FechaNacimiento" value=""  id="fecha" class="form-control" />
-                        </div>
-  
-  
+                            <input type="date" name="FechaNacimiento" value="" id="fecha"/>
+                            <span class="label label-danger field-validation-error mse" data-valmsg-for="Identificacion" data-valmsg-replace="true">        
+                            <span for="Sexo" class="mse">El cambo es requerido</span>            
+                            </span>
+                         </div>
+
                         <div class="form-group">
+
+                            
                             <label>Profesion</label>
                             <select name="Profesion" id="profesiones">
                                 <option value="Ingeniero">Ingeniero</option>
@@ -188,16 +233,20 @@
                                 <option value="Mercaderista">Mercaderista</option>
                                 <option value="Medico">Medico</option>
                             </select>
+                            <span class="label label-danger field-validation-error mse" data-valmsg-for="Identificacion" data-valmsg-replace="true">
+                                <span for="Sexo" class="mse">El cambo es requerido</span>
+                            </span>
                         </div>
 
                         <div class="form-group">
-                            <input type="button" name="enviar" id="enviar" value="Enviar" class="btn btn-primary" />
-                            <input type="button" name="de" value="Actualizar" id="actualizar" class="btn btn-primary" />
-                            <input type="button" name="de" value="Detalle Registro" id="detalle" class="btn btn-primary" />
-                            <input type="button" name="valido" value="validar form" id="validar" class="btn btn-primary" />
+                             <input type="submit" name="reg" value="Registrarse" class="btn btn-primary" id="r" />
+                             <input type="button" name="de" value="Actualizar" id="actualizar" class="btn btn-primary" />
+                             <input type="button" name="de" value="Detalle Registro" id="detalle" class="btn btn-primary" />
+                             <input type="button" name="valido" value="validar form" id="validar" class="btn btn-primary" />
                         </div>
 
-                    </form>
+
+                    }
 
                 </div>
 
@@ -205,24 +254,24 @@
 
 
         </div>
-        
+
 
 
         <div class="col-lg-6" id="formularioFoto">
-            
+
             <div id="resultadoenvio"></div>
-            
+
             <section class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Registro Detalle</strong>
                 </div>
                 <div class="panel-body">
 
-                    <form action="/Foto/GuardarFoto" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data" id="archivo">
 
                         <div class="form-group">
                             <label>Agregar Foto</label>
-                            <input type="file" name="Nombres" value="" id="imagen" class="form-control" />
+                            <input type="file" name="subir" value="" id="imagen" class="form-control" />
 
                             <div class="form-group">
                                 <label>Posicion foto</label>
@@ -236,20 +285,18 @@
 
                             <div class="form-group">
                                 <label>Breve descripcion de su foto</label>
-                                <input type="text" name="desc" value="" id="descripcion" class="form-control"  multiple/>
+                                <input type="text" name="desc" value="" id="descripcion" class="form-control" multiple />
 
                             </div>
 
                             <div class="form-group">
-                                <input type="button" name="subir" value="Subir imagen"  id="subir"/>
+                                <input type="button" name="subir" value="Subir imagen" id="subir" />
                             </div>
 
                         </div>
-                        </form>
-                    </div>
+                    </form>
+                </div>
             </section>
         </div>
     </div>
 </div>
-
-

@@ -47,7 +47,7 @@
                 Sexo: sexo,
                 FechaNacimiento: fecha,
                 Profesion: $("#profesiones").val()
-            };
+            }
 
 
             $.post('../Persona/ActualizarPersona', persona, function (data) {
@@ -122,8 +122,7 @@
         grilla.Column(format:@<text><input type="button" name="editar" value="Editar" id="editar" class="btn btn-success btn-sm" />
             <input type="button" name="eliminar" value="Eliminar" id="borrar" class="btn btn-danger btn-sm" />
         </text>)
-
-                              ))
+                                               ))
 </div>
 </div>
    

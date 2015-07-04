@@ -50,7 +50,7 @@ namespace RegistroPersonas.Repositorio
 
         public void EliminarPersona(int identificacion)
         {
-            var personaEliminar = context.Personas.Single(p => p.Identificacion == identificacion);
+            var personaEliminar = context.Personas.FirstOrDefault(p => p.Identificacion == identificacion);
            // personaEliminar.Fotos.RemoveAll(f => f.IdPersona == id);
             context.Personas.Remove(personaEliminar);
 

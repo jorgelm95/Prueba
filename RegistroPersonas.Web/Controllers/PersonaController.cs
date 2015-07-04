@@ -59,7 +59,7 @@ namespace RegistroPersonas.Web.Controllers
             return Json(new{estado= "ok"}, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public ActionResult EliminarPersona(int identificacion)
         {
             repoPersona.EliminarPersona(identificacion);
@@ -68,19 +68,19 @@ namespace RegistroPersonas.Web.Controllers
             
 
         [HttpPost]
-        public ActionResult GuardarFoto(int identificacion, HttpPostedFileBase imagen, string posicion,string descripcion)
+        public ActionResult GuardarFoto(int identificacion, HttpPostedFileBase imagen,  string posicion,string descripcion)
         {
 
             entidades.Foto fotoguardar = new entidades.Foto();
             var nombreimagen = "";
-            var rutaVirtual = "";
+            //var rutaVirtual = "";
             var persona = repoPersona.BuscarPersonaPorIdentificacion(identificacion);
 
-            nombreimagen = Path.GetFileName(imagen.FileName);
+            /*nombreimagen = Path.GetFileName(imagen.FileName);
             rutaVirtual = Path.Combine(Server.MapPath("/imagenes/"), nombreimagen);
 
             imagen.SaveAs(rutaVirtual);
-            
+            */
 
             fotoguardar.Id = Guid.NewGuid();
             fotoguardar.NombreFoto = nombreimagen;
@@ -93,5 +93,25 @@ namespace RegistroPersonas.Web.Controllers
 
             return Json(new { estado = "ok", mensaje = "imagen subida con exito" }, JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult ValidarIdentificacion(int identificacion)
+        {
+                
+                var usuarioexistente = repoPersona.BuscarPersonaPorIdentificacion(identificacion);
+
+                if (usuarioexistente == null)
+                {
+
+                    return Json(new { estado = "ok",mensaje = "identificacion valida" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+
+                    return Json(new {mensaje = "esta identificacon ya existe" }, JsonRequestBehavior.AllowGet);
+                }
+
+        }
+
     }
 }
