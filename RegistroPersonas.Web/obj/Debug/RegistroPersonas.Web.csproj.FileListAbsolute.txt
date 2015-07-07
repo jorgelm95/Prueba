@@ -32,3 +32,37 @@ c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\Regist
 c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Web\obj\Debug\RegistroPersonas.Web.pdb
 c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Web\bin\EntityFramework.SqlServer.dll
 c:\users\jorgeluis\documents\visual studio 2013\Projects\RegistroPersonas\RegistroPersonas.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Web.dll.config
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Web.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Web.pdb
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\Antlr3.Runtime.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\EntityFramework.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\Newtonsoft.Json.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Dominio.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Repositorio.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Helpers.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Mvc.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Optimization.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Razor.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\WebGrease.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Dominio.pdb
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\RegistroPersonas.Repositorio.pdb
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\EntityFramework.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Helpers.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Mvc.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Optimization.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.Razor.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\Antlr3.Runtime.pdb
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\bin\Newtonsoft.Json.xml
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\obj\Debug\RegistroPersonas.Web.csprojResolveAssemblyReference.cache
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\obj\Debug\RegistroPersonas.Web.dll
+C:\Users\jorgeluis\Downloads\Prueba-master\RegistroPersonas.Web\obj\Debug\RegistroPersonas.Web.pdb

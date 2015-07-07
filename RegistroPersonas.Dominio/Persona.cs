@@ -31,7 +31,7 @@ namespace RegistroPersonas.Dominio
        [Required(ErrorMessage = "El cambo es requerido")]
        public string Profesion { get; set; }
 
-       public virtual List<Foto> Fotos { get; set; }
+       public virtual List<Foto> listaFotos { get; set; }
 
     }
 }

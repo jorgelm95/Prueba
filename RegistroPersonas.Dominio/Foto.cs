@@ -16,7 +16,8 @@ namespace RegistroPersonas.Dominio
 
        [NotMapped]
         public Guid IdPersona { get; set; }
-        public virtual Persona persona { get; set; }
+
+       public virtual Persona persona { get; set; }
 
 
     }

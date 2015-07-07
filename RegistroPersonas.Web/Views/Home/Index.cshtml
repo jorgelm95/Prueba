@@ -24,11 +24,12 @@
         
         $(".mse").hide();
 
-        $("#frmpersona").submit(function(){
-        
-            
+            $("#frmpersona").submit(function () {
+
+
 
                 var personaValidar = $("#frmpersona");
+
 
 
                 if (personaValidar.validate()) {
@@ -47,7 +48,7 @@
                     $.post('../Persona/GuardarPersona', persona, function (data) {
 
                         if (data.estado == "ok") {
-                            
+
                             $("#respuesta").addClass("alert");
                             $("#respuesta").addClass("alert-success");
                             $("#respuesta").html(data.mensaje);
@@ -64,7 +65,6 @@
                 }
 
             })
-
 
         $("#error").hide();
 
@@ -83,6 +83,8 @@
                 } else {
 
                     $("#error").html(data.mensaje);
+                    $("#error").removeClass("alert-danger");
+                    $("#error").addClass("alert-success");
                     $("#error").show();
                 }
 
@@ -121,31 +123,18 @@
 
     $(document).ready(function () {
 
+        $("#ubicacion").on("change", function () {
 
-        $("#subir").on("click", function () {
+            var opcion = $("#ubicacion").val();
 
-            var dato = new FormData();
 
-            var archivo = $("#imagen").get(0).files;
+            $.post('../Persona/ValidarPosicion', {posicionValidar:opcion})
 
-            if (archivo.length > 0) {
-                dato.append("imagen", archivo[0]);
-            }
-            var id = $("#Identificacion").val();
-            var u = $("#posicion").val();
-            var d = $("#descripcion").val();
 
-            $.post('../Persona/GuardarFoto', {identificacion:id,imagen:dato,posicion:u,descripcion:d},
-                function (data) {
 
-                    if (data.estado == "ok") {
+        })
 
-                        $("#resultadoenvio").html(data.estado);
-                        $("#resultadoenvio").addClass("alert");
-                        $("#resultadoenvio").addClass("alert-success");
-                    }
-                });
-        });
+
     });
 
 
@@ -153,6 +142,7 @@
 
 <ol class="breadcrumb" style="margin-top:20px;">
     <li><a href="~/">Registro Personas</a></li>
+    <li class="active">@Html.ActionLink("Subir Fotos", "GuardarFoto", "Persona", new { id = 0 }, null)  </li>
     <li class="active"><a href="/Persona/ListarPersonas">Ver Personas</a></li>
 </ol>
 
@@ -213,9 +203,9 @@
                         <div class="form-group">
 
                             <label>Fecha Nacimiento</label>
-                            <input type="date" name="FechaNacimiento" value="" id="fecha"/>
+                            <input type="date" name="FechaNacimiento" value="" id="fecha" />
                             <span class="label label-danger field-validation-error mse" data-valmsg-for="Identificacion" data-valmsg-replace="true">        
-                            <span for="Sexo" class="mse">El cambo es requerido</span>            
+                            <span id="errorfecha" class="">El cambo es requerido</span>            
                             </span>
                          </div>
 
@@ -261,42 +251,7 @@
 
             <div id="resultadoenvio"></div>
 
-            <section class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>Registro Detalle</strong>
-                </div>
-                <div class="panel-body">
-
-                    <form method="post" enctype="multipart/form-data" id="archivo">
-
-                        <div class="form-group">
-                            <label>Agregar Foto</label>
-                            <input type="file" name="subir" value="" id="imagen" class="form-control" />
-
-                            <div class="form-group">
-                                <label>Posicion foto</label>
-                                <select id="posicion">
-                                    <option value="frontal">Frontal</option>
-                                    <option value="lateral derecho">Lateral derecha</option>
-                                    <option value="lateral izquierda">Lateral izquierda</option>
-                                </select>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label>Breve descripcion de su foto</label>
-                                <input type="text" name="desc" value="" id="descripcion" class="form-control" multiple />
-
-                            </div>
-
-                            <div class="form-group">
-                                <input type="button" name="subir" value="Subir imagen" id="subir" />
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </section>
+            
         </div>
     </div>
 </div>
