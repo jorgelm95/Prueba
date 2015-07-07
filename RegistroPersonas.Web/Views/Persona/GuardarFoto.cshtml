@@ -5,7 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GuardarFoto</h2>
+
+<ol class="breadcrumb" style="margin-top:20px;">
+    <li><a href="~/">Registro Personas</a></li>
+    <li class="active"><a href="/Persona/ListarPersonas">Ver Personas</a></li>
+
+</ol>
+
 
 
 <section class="panel panel-default">
@@ -16,8 +22,8 @@
 
 
 
-        @using (Html.BeginForm(actionName: "GuardarFoto", controllerName: "Persona", routeValues: new { id = 1 }, method: FormMethod.Post))
-        {
+       
+        <form action="/Persona/GuardarFotos" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Agregar Foto</label>
                 <input type="file" name="imagen" value="" id="imagen" class="form-control" />
@@ -38,7 +44,7 @@
                     <input type="submit" name="subir" value="Subir imagen" id="subir" />
                 </div>
             </div>
-        }
+        </form>
     </div>
 </section>
 

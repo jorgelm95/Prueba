@@ -70,18 +70,14 @@ namespace RegistroPersonas.Web.Controllers
         }
 
 
-        public ActionResult GuardarFoto(int id)
+        public ActionResult GuardarFoto()
         {
-
-            var usuario = repoPersona.BuscarPersonaPorIdentificacion(id);
-
-            return View(usuario);
+            return View();
         }
 
 
-
         [HttpPost]
-        public ActionResult GuardarFoto(HttpPostedFileBase imagen, entidades.Foto foto)
+        public ActionResult GuardarFotos(HttpPostedFileBase imagen, entidades.Foto foto)
         {
 
         
